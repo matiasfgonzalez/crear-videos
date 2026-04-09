@@ -1,0 +1,39 @@
+{
+  "name": "mi-tutorial",
+  "title": "Cómo Usar Nuestro Dashboard",
+  "description": "Un recorrido rápido por las funciones clave",
+  "baseUrl": "http://localhost:3000",
+  "video": {
+    "appName": "Mi App",
+    "ctaText": "¡Probalo gratis en miapp.com!"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "steps": [
+    {
+      "action": "goto",
+      "url": "/dashboard",
+      "name": "Abrir Dashboard",
+      "narration": "Primero, navega a tu dashboard.",
+      "waitUntil": "networkidle",
+      "delayAfter": 1000
+    },
+    {
+      "action": "screenshot",
+      "name": "Vista General del Dashboard"
+    },
+    {
+      "action": "click",
+      "selector": "button[aria-label='Crear Nuevo']",
+      "name": "Click en Botón Crear",
+      "narration": "Hacé click en el botón crear para comenzar.",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Modal de Creación"
+    }
+  ]
+}

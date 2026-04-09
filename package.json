@@ -1,0 +1,29 @@
+{
+  "name": "crear-videos",
+  "version": "1.0.0",
+  "description": "Automated video tutorial generator using Playwright + Remotion",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx generate-video.ts",
+    "validate": "tsx scripts/validate-flow.ts",
+    "playwright:run": "tsx scripts/runner.ts",
+    "remotion:preview": "cd remotion && npm run start",
+    "remotion:render": "cd remotion && npm run render",
+    "setup:browsers": "npx playwright install chromium",
+    "setup": "npm install && cd remotion && npm install && cd .. && npx playwright install chromium",
+    "dev": "npm run remotion:preview"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.2",
+    "typescript": "^5.5.2"
+  }
+}

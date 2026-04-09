@@ -1,0 +1,49 @@
+{
+  "name": "demo-navegacion",
+  "title": "Explorando el dashboard",
+  "description": "Un recorrido por las principales funciones del dashboard",
+  "baseUrl": "http://localhost:3000",
+  "video": {
+    "appName": "Mi App",
+    "ctaText": "¡Probá el dashboard en miapp.com!"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "steps": [
+    {
+      "action": "goto",
+      "url": "/dashboard",
+      "name": "Dashboard principal",
+      "narration": "Este es el dashboard de Mi App. Desde aquí controlás todo.",
+      "waitUntil": "networkidle",
+      "delayAfter": 1500
+    },
+    {
+      "action": "screenshot",
+      "name": "Vista general del dashboard"
+    },
+    {
+      "action": "scroll",
+      "y": 400,
+      "name": "Explorar contenido",
+      "narration": "Scrolleando verás todas las funciones disponibles.",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Contenido adicional"
+    },
+    {
+      "action": "scroll",
+      "y": -400,
+      "name": "Volver arriba",
+      "delayAfter": 500
+    },
+    {
+      "action": "screenshot",
+      "name": "Resumen del dashboard"
+    }
+  ]
+}

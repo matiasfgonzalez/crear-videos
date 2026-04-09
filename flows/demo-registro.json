@@ -1,0 +1,73 @@
+{
+  "name": "demo-registro",
+  "title": "Cómo registrarse en la plataforma",
+  "description": "Tutorial paso a paso para crear una cuenta nueva",
+  "baseUrl": "http://localhost:3000",
+  "video": {
+    "appName": "Mi App",
+    "ctaText": "¡Regístrate gratis en miapp.com!",
+    "backgroundMusic": "music/background.mp3"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "steps": [
+    {
+      "action": "goto",
+      "url": "/",
+      "name": "Inicio",
+      "narration": "Bienvenido a Mi App. Hoy te mostramos cómo crear tu cuenta paso a paso.",
+      "waitUntil": "domcontentloaded",
+      "delayAfter": 1000
+    },
+    {
+      "action": "screenshot",
+      "name": "Página de inicio"
+    },
+    {
+      "action": "click",
+      "selector": "text=Registrarse",
+      "name": "Abrir formulario de registro",
+      "narration": "Hacé clic en Registrarse para comenzar.",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Formulario de registro"
+    },
+    {
+      "action": "fill",
+      "selector": "#email, input[type='email'], input[name='email']",
+      "value": "usuario@ejemplo.com",
+      "name": "Ingresar email",
+      "narration": "Ingresá tu dirección de correo electrónico.",
+      "delayAfter": 400
+    },
+    {
+      "action": "fill",
+      "selector": "#password, input[type='password'], input[name='password']",
+      "value": "MiPassword123!",
+      "name": "Ingresar contraseña",
+      "narration": "Creá una contraseña segura.",
+      "delayAfter": 400
+    },
+    {
+      "action": "screenshot",
+      "name": "Formulario completado",
+      "narration": "Verificá que tus datos estén correctos antes de continuar."
+    },
+    {
+      "action": "click",
+      "selector": "button[type='submit'], text=Confirmar, text=Crear cuenta, text=Registrarse",
+      "name": "Confirmar registro",
+      "narration": "Hacé clic en Confirmar para finalizar el registro.",
+      "delayAfter": 2000
+    },
+    {
+      "action": "screenshot",
+      "name": "Registro exitoso",
+      "narration": "¡Listo! Tu cuenta fue creada exitosamente."
+    }
+  ]
+}

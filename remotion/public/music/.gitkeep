@@ -1,0 +1,22 @@
+# Background music directory
+
+Place your background music files here (MP3 format recommended).
+
+Example:
+
+```
+music/
+└── background.mp3
+```
+
+Then reference in your flow JSON:
+
+```json
+{
+  "video": {
+    "backgroundMusic": "music/background.mp3"
+  }
+}
+```
+
+The audio will be looped throughout the video at 15% volume (configurable in TutorialVideo.tsx).
