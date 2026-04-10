@@ -1,19 +1,36 @@
 import React from 'react';
 import { AbsoluteFill, Sequence, Audio, staticFile } from 'remotion';
-import { IntroScene } from './components/IntroScene.js';
-import { StepScene } from './components/StepScene.js';
-import { OutroScene } from './components/OutroScene.js';
-import { TIMING } from './design.js';
-import type { TutorialVideoProps } from './types.js';
+import { IntroScene } from './components/IntroScene';
+import { StepScene } from './components/StepScene';
+import { OutroScene } from './components/OutroScene';
+import { TIMING } from './design';
 
-export const TutorialVideo: React.FC<TutorialVideoProps> = ({
+interface FrameProps {
+  index: number;
+  stepName: string;
+  narration?: string;
+  filename: string;
+  relativePath: string;
+  capturedAt: string;
+}
+
+interface TutorialVideoProps {
+  title: string;
+  description?: string;
+  appName?: string;
+  ctaText?: string;
+  backgroundMusic?: string;
+  frames: FrameProps[];
+}
+
+export const TutorialVideo = ({
   title,
   description,
   appName,
   ctaText,
   backgroundMusic,
   frames,
-}) => {
+}: TutorialVideoProps) => {
   const totalSteps = frames.length;
   let currentOffset = 0;
 
@@ -28,7 +45,7 @@ export const TutorialVideo: React.FC<TutorialVideoProps> = ({
       durationInFrames={TIMING.introDurationFrames}
     >
       <IntroScene title={title} description={description} appName={appName} />
-    </Sequence>
+    </Sequence>,
   );
   currentOffset += TIMING.introDurationFrames;
 
@@ -51,7 +68,7 @@ export const TutorialVideo: React.FC<TutorialVideoProps> = ({
           isFirst={i === 0}
           isLast={i === frames.length - 1}
         />
-      </Sequence>
+      </Sequence>,
     );
 
     currentOffset += TIMING.stepDurationFrames;
@@ -65,18 +82,14 @@ export const TutorialVideo: React.FC<TutorialVideoProps> = ({
       durationInFrames={TIMING.outroDurationFrames}
     >
       <OutroScene ctaText={ctaText} appName={appName} />
-    </Sequence>
+    </Sequence>,
   );
 
   return (
     <AbsoluteFill style={{ background: '#0A0A0F' }}>
       {sequences}
       {backgroundMusic && (
-        <Audio
-          src={staticFile(backgroundMusic)}
-          volume={0.15}
-          loop={true}
-        />
+        <Audio src={staticFile(backgroundMusic)} volume={0.15} loop={true} />
       )}
     </AbsoluteFill>
   );

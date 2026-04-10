@@ -1,0 +1,83 @@
+{
+  "title": "Cómo Reservar un Turno",
+  "description": "Tutorial paso a paso",
+  "appName": "BuscaTusTurnos",
+  "ctaText": "¡Reservá tu turno en buscatusturnos.com.ar!",
+  "frames": [
+    {
+      "index": 0,
+      "stepName": "Página Principal",
+      "narration": "Abrí la página principal de BuscaTusTurnos",
+      "filename": "frame-001-p-gina-principal.png",
+      "relativePath": "frames/buscatusturnos/frame-001-p-gina-principal.png",
+      "capturedAt": "2026-04-10T00:02:04.047Z"
+    },
+    {
+      "index": 1,
+      "stepName": "Vista Inicial",
+      "filename": "frame-002-vista-inicial.png",
+      "relativePath": "frames/buscatusturnos/frame-002-vista-inicial.png",
+      "capturedAt": "2026-04-10T00:02:04.645Z"
+    },
+    {
+      "index": 2,
+      "stepName": "Abrir Menú",
+      "narration": "Tocá el menú para ver las opciones",
+      "filename": "frame-003-abrir-men.png",
+      "relativePath": "frames/buscatusturnos/frame-003-abrir-men.png",
+      "capturedAt": "2026-04-10T00:02:06.305Z"
+    },
+    {
+      "index": 3,
+      "stepName": "Click en Reservar",
+      "filename": "frame-004-click-en-reservar.png",
+      "relativePath": "frames/buscatusturnos/frame-004-click-en-reservar.png",
+      "capturedAt": "2026-04-10T00:02:07.016Z"
+    },
+    {
+      "index": 4,
+      "stepName": "Buscar Profesionales",
+      "narration": "Seleccioná la opción Reservar",
+      "filename": "frame-005-buscar-profesionales.png",
+      "relativePath": "frames/buscatusturnos/frame-005-buscar-profesionales.png",
+      "capturedAt": "2026-04-10T00:02:09.226Z"
+    },
+    {
+      "index": 5,
+      "stepName": "Lista de Profesionales",
+      "filename": "frame-006-lista-de-profesionales.png",
+      "relativePath": "frames/buscatusturnos/frame-006-lista-de-profesionales.png",
+      "capturedAt": "2026-04-10T00:02:09.852Z"
+    },
+    {
+      "index": 6,
+      "stepName": "Ver más profesionales",
+      "narration": "Deslizá para ver más opciones",
+      "filename": "frame-007-ver-m-s-profesionales.png",
+      "relativePath": "frames/buscatusturnos/frame-007-ver-m-s-profesionales.png",
+      "capturedAt": "2026-04-10T00:02:11.425Z"
+    },
+    {
+      "index": 7,
+      "stepName": "Más Profesionales",
+      "filename": "frame-008-m-s-profesionales.png",
+      "relativePath": "frames/buscatusturnos/frame-008-m-s-profesionales.png",
+      "capturedAt": "2026-04-10T00:02:12.174Z"
+    },
+    {
+      "index": 8,
+      "stepName": "Continuar explorando",
+      "narration": "Seguí explorando los profesionales disponibles",
+      "filename": "frame-009-continuar-explorando.png",
+      "relativePath": "frames/buscatusturnos/frame-009-continuar-explorando.png",
+      "capturedAt": "2026-04-10T00:02:13.679Z"
+    },
+    {
+      "index": 9,
+      "stepName": "Profesionales Disponibles",
+      "filename": "frame-010-profesionales-disponibles.png",
+      "relativePath": "frames/buscatusturnos/frame-010-profesionales-disponibles.png",
+      "capturedAt": "2026-04-10T00:02:14.357Z"
+    }
+  ]
+}

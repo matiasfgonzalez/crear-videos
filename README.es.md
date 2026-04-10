@@ -106,7 +106,7 @@ Crea un archivo JSON en el directorio `flows/`. Ejemplo `flows/mi-tutorial.json`
   "steps": [
     {
       "action": "goto",
-      "url": "/dashboard",
+      "url": "/",
       "name": "Abrir Dashboard",
       "narration": "Primero, navega a tu dashboard.",
       "waitUntil": "networkidle",
@@ -139,9 +139,11 @@ npm run dev  # o como inicies tu app
 
 # En otra terminal, genera el video
 npm run generate -- flows/mi-tutorial.json
+npm run generate -- flows/buscatusturnos.json
 
 # O ejecuta en modo con interfaz para ver las acciones del navegador
 npm run generate -- flows/mi-tutorial.json --headed
+npm run generate -- flows/buscatusturnos.json --headed
 ```
 
 El script hará:
@@ -212,9 +214,9 @@ Edita `remotion/src/design.ts`:
 
 ```typescript
 export const COLORS = {
-  bg: "#0A0A0F", // Fondo
-  primary: "#6C63FF", // Color de acento primario
-  secondary: "#00D4FF", // Acento secundario
+  bg: '#0A0A0F', // Fondo
+  primary: '#6C63FF', // Color de acento primario
+  secondary: '#00D4FF', // Acento secundario
   // ... más colores
 };
 

@@ -6,7 +6,7 @@ import {
   interpolate,
   Easing,
 } from 'remotion';
-import { COLORS, FONTS } from '../design.js';
+import { COLORS, FONTS } from '../design';
 
 interface IntroSceneProps {
   title: string;
@@ -23,26 +23,48 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   const { fps } = useVideoConfig();
 
   // App name slides in from top
-  const appNameProgress = spring({ frame, fps, config: { damping: 14, stiffness: 100 }, durationInFrames: 30 });
+  const appNameProgress = spring({
+    frame,
+    fps,
+    config: { damping: 14, stiffness: 100 },
+    durationInFrames: 30,
+  });
   const appNameY = interpolate(appNameProgress, [0, 1], [-60, 0]);
   const appNameOpacity = interpolate(appNameProgress, [0, 1], [0, 1]);
 
   // Title fades + scales in
-  const titleProgress = spring({ frame: frame - 15, fps, config: { damping: 12, stiffness: 80 }, durationInFrames: 40 });
+  const titleProgress = spring({
+    frame: frame - 15,
+    fps,
+    config: { damping: 12, stiffness: 80 },
+    durationInFrames: 40,
+  });
   const titleScale = interpolate(titleProgress, [0, 1], [0.85, 1]);
   const titleOpacity = interpolate(titleProgress, [0, 1], [0, 1]);
 
   // Description slides from bottom
-  const descProgress = spring({ frame: frame - 30, fps, config: { damping: 15, stiffness: 90 }, durationInFrames: 35 });
+  const descProgress = spring({
+    frame: frame - 30,
+    fps,
+    config: { damping: 15, stiffness: 90 },
+    durationInFrames: 35,
+  });
   const descY = interpolate(descProgress, [0, 1], [40, 0]);
   const descOpacity = interpolate(descProgress, [0, 1], [0, 1]);
 
   // Animated gradient orbs
-  const orbPulse = interpolate(frame, [0, 90], [0, 1], { easing: Easing.inOut(Easing.ease) });
+  const orbPulse = interpolate(frame, [0, 90], [0, 1], {
+    easing: Easing.inOut(Easing.ease),
+  });
   const orb1Scale = 1 + Math.sin(orbPulse * Math.PI * 2) * 0.05;
 
   // Bottom pulse line
-  const lineProgress = spring({ frame: frame - 50, fps, config: { damping: 18 }, durationInFrames: 25 });
+  const lineProgress = spring({
+    frame: frame - 50,
+    fps,
+    config: { damping: 18 },
+    durationInFrames: 25,
+  });
   const lineWidth = interpolate(lineProgress, [0, 1], [0, 300]);
 
   return (

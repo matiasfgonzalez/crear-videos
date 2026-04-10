@@ -1,11 +1,30 @@
 import React from 'react';
-import {
-  Composition,
-  registerRoot,
-} from 'remotion';
-import { TutorialVideo } from './TutorialVideo.js';
-import { CANVAS, TIMING } from './design.js';
-import type { TutorialVideoProps } from './types.js';
+import { Composition, registerRoot } from 'remotion';
+import { z } from 'zod';
+import { TutorialVideo } from './TutorialVideo';
+import { CANVAS, TIMING } from './design';
+
+/** Zod schema for frame props */
+const frameSchema = z.object({
+  index: z.number(),
+  stepName: z.string(),
+  narration: z.string().optional(),
+  filename: z.string(),
+  relativePath: z.string(),
+  capturedAt: z.string(),
+});
+
+/** Zod schema for TutorialVideo props */
+const tutorialVideoSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  appName: z.string().optional(),
+  ctaText: z.string().optional(),
+  backgroundMusic: z.string().optional(),
+  frames: z.array(frameSchema),
+});
+
+type TutorialVideoProps = z.infer<typeof tutorialVideoSchema>;
 
 /** Default props used in Remotion Studio preview */
 const defaultProps: TutorialVideoProps = {
@@ -32,11 +51,15 @@ function calculateTotalDuration(frameCount: number): number {
   );
 }
 
+// Cast component to satisfy Remotion's strict typing
+const TutorialVideoComponent = TutorialVideo as React.FC<TutorialVideoProps>;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <Composition
       id="TutorialVideo"
-      component={TutorialVideo}
+      component={TutorialVideoComponent}
+      schema={tutorialVideoSchema}
       durationInFrames={calculateTotalDuration(defaultProps.frames.length)}
       fps={CANVAS.fps}
       width={CANVAS.width}

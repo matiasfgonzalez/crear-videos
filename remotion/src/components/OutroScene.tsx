@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  useCurrentFrame,
-  useVideoConfig,
-  spring,
-  interpolate,
-} from 'remotion';
-import { COLORS, FONTS } from '../design.js';
+import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
+import { COLORS, FONTS } from '../design';
 
 interface OutroSceneProps {
   ctaText?: string;
@@ -20,23 +15,45 @@ export const OutroScene: React.FC<OutroSceneProps> = ({
   const { fps, durationInFrames } = useVideoConfig();
 
   // Scene fade in
-  const fadeIn = interpolate(frame, [0, 15], [0, 1], { extrapolateRight: 'clamp' });
+  const fadeIn = interpolate(frame, [0, 15], [0, 1], {
+    extrapolateRight: 'clamp',
+  });
   // Scene fade out
-  const fadeOut = interpolate(frame, [durationInFrames - 10, durationInFrames], [1, 0], { extrapolateLeft: 'clamp' });
+  const fadeOut = interpolate(
+    frame,
+    [durationInFrames - 10, durationInFrames],
+    [1, 0],
+    { extrapolateLeft: 'clamp' },
+  );
   const opacity = Math.min(fadeIn, fadeOut);
 
   // Checkmark / success icon springs in
-  const iconProgress = spring({ frame: frame - 10, fps, config: { damping: 10, stiffness: 80 }, durationInFrames: 35 });
+  const iconProgress = spring({
+    frame: frame - 10,
+    fps,
+    config: { damping: 10, stiffness: 80 },
+    durationInFrames: 35,
+  });
   const iconScale = interpolate(iconProgress, [0, 1], [0.3, 1]);
   const iconOpacity = interpolate(iconProgress, [0, 1], [0, 1]);
 
   // Title slides up
-  const titleProgress = spring({ frame: frame - 25, fps, config: { damping: 14 }, durationInFrames: 30 });
+  const titleProgress = spring({
+    frame: frame - 25,
+    fps,
+    config: { damping: 14 },
+    durationInFrames: 30,
+  });
   const titleY = interpolate(titleProgress, [0, 1], [50, 0]);
   const titleOpacity = interpolate(titleProgress, [0, 1], [0, 1]);
 
   // CTA button pops in
-  const ctaProgress = spring({ frame: frame - 42, fps, config: { damping: 12, stiffness: 100 }, durationInFrames: 25 });
+  const ctaProgress = spring({
+    frame: frame - 42,
+    fps,
+    config: { damping: 12, stiffness: 100 },
+    durationInFrames: 25,
+  });
   const ctaScale = interpolate(ctaProgress, [0, 1], [0.7, 1]);
   const ctaOpacity = interpolate(ctaProgress, [0, 1], [0, 1]);
 
@@ -63,24 +80,28 @@ export const OutroScene: React.FC<OutroSceneProps> = ({
       }}
     >
       {/* Background gradient orbs */}
-      <div style={{
-        position: 'absolute',
-        width: 800,
-        height: 800,
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${COLORS.primary}28 0%, transparent 70%)`,
-        top: -200,
-        right: -300,
-      }} />
-      <div style={{
-        position: 'absolute',
-        width: 600,
-        height: 600,
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${COLORS.secondary}18 0%, transparent 70%)`,
-        bottom: -100,
-        left: -200,
-      }} />
+      <div
+        style={{
+          position: 'absolute',
+          width: 800,
+          height: 800,
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${COLORS.primary}28 0%, transparent 70%)`,
+          top: -200,
+          right: -300,
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          width: 600,
+          height: 600,
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${COLORS.secondary}18 0%, transparent 70%)`,
+          bottom: -100,
+          left: -200,
+        }}
+      />
 
       {/* Content */}
       <div

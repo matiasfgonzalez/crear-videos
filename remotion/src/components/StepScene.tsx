@@ -8,7 +8,7 @@ import {
   staticFile,
   Easing,
 } from 'remotion';
-import { COLORS, FONTS } from '../design.js';
+import { COLORS, FONTS } from '../design';
 
 interface StepSceneProps {
   stepNumber: number;
@@ -34,9 +34,14 @@ export const StepScene: React.FC<StepSceneProps> = ({
   });
 
   // Fade out at end
-  const sceneOpacityOut = interpolate(frame, [durationInFrames - 12, durationInFrames], [1, 0], {
-    extrapolateLeft: 'clamp',
-  });
+  const sceneOpacityOut = interpolate(
+    frame,
+    [durationInFrames - 12, durationInFrames],
+    [1, 0],
+    {
+      extrapolateLeft: 'clamp',
+    },
+  );
 
   const finalOpacity = Math.min(sceneOpacity, sceneOpacityOut);
 
@@ -46,7 +51,12 @@ export const StepScene: React.FC<StepSceneProps> = ({
   });
 
   // Step label slides in from bottom
-  const labelProgress = spring({ frame: frame - 10, fps, config: { damping: 14 }, durationInFrames: 30 });
+  const labelProgress = spring({
+    frame: frame - 10,
+    fps,
+    config: { damping: 14 },
+    durationInFrames: 30,
+  });
   const labelY = interpolate(labelProgress, [0, 1], [80, 0]);
   const labelOpacity = interpolate(labelProgress, [0, 1], [0, 1]);
 
@@ -94,7 +104,8 @@ export const StepScene: React.FC<StepSceneProps> = ({
           right: 0,
           top: 0,
           height: '75%',
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 60%, rgba(10,10,15,0.95) 100%)',
+          background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.1) 60%, rgba(10,10,15,0.95) 100%)',
         }}
       />
 

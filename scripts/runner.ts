@@ -1,10 +1,21 @@
 import { chromium } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
-import { loadFlowConfig, takeScreenshot, waitForPageStable, toFilename, ensureDir } from './utils.js';
+import {
+  loadFlowConfig,
+  takeScreenshot,
+  waitForPageStable,
+  toFilename,
+  ensureDir,
+} from './utils.js';
 import { executeAction } from './actions.js';
 import { log } from './logger.js';
-import type { FlowConfig, FlowStep, CapturedFrame, FlowMetadata } from './types.js';
+import type {
+  FlowConfig,
+  FlowStep,
+  CapturedFrame,
+  FlowMetadata,
+} from './types.js';
 
 /** Validate and cast a raw JSON object to FlowConfig */
 function validateFlowConfig(raw: unknown): FlowConfig {
@@ -46,8 +57,13 @@ export async function runFlow(options: RunnerOptions): Promise<FlowMetadata> {
   const raw = loadFlowConfig(flowPath);
   const flow = validateFlowConfig(raw);
 
-  const baseUrl = options.baseUrl ?? flow.baseUrl ?? process.env.BASE_URL ?? 'http://localhost:3000';
-  const viewport = options.viewport ?? flow.viewport ?? { width: 1280, height: 720 };
+  const baseUrl =
+    options.baseUrl ??
+    flow.baseUrl ??
+    process.env.BASE_URL ??
+    'http://localhost:3000';
+  const viewport = options.viewport ??
+    flow.viewport ?? { width: 1280, height: 720 };
 
   log.info(`Flow: "${flow.title}" (${flow.steps.length} steps)`);
   log.info(`Base URL: ${baseUrl}`);
@@ -90,7 +106,7 @@ export async function runFlow(options: RunnerOptions): Promise<FlowMetadata> {
       log.bold(`Step ${stepNum}/${flow.steps.length}: ${stepName}`);
 
       // Execute the action
-      await executeAction(page, step);
+      await executeAction(page, step, baseUrl);
 
       // Decide whether to take a screenshot
       const shouldCapture =
@@ -155,16 +171,23 @@ export async function runFlow(options: RunnerOptions): Promise<FlowMetadata> {
 
 // ─── CLI entry point ───────────────────────────────────────────────────────
 
-if (process.argv[1]?.endsWith('runner.ts') || process.argv[1]?.endsWith('runner.js')) {
+if (
+  process.argv[1]?.endsWith('runner.ts') ||
+  process.argv[1]?.endsWith('runner.js')
+) {
   const args = process.argv.slice(2);
-  const flowArg = args.find((a) => a.startsWith('--flow='))?.split('=')[1]
-    ?? args[args.indexOf('--flow') + 1];
+  const flowArg =
+    args.find((a) => a.startsWith('--flow='))?.split('=')[1] ??
+    args[args.indexOf('--flow') + 1];
   const headless = args.includes('--headless');
-  const baseUrl = args.find((a) => a.startsWith('--base-url='))?.split('=')[1]
-    ?? args[args.indexOf('--base-url') + 1];
+  const baseUrl =
+    args.find((a) => a.startsWith('--base-url='))?.split('=')[1] ??
+    args[args.indexOf('--base-url') + 1];
 
   if (!flowArg) {
-    log.error('Usage: tsx scripts/runner.ts --flow <path/to/flow.json> [--headless] [--base-url <url>]');
+    log.error(
+      'Usage: tsx scripts/runner.ts --flow <path/to/flow.json> [--headless] [--base-url <url>]',
+    );
     process.exit(1);
   }
 

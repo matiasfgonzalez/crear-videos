@@ -1,0 +1,72 @@
+{
+  "name": "buscatusturnos",
+  "title": "Cómo Reservar un Turno",
+  "description": "Tutorial paso a paso",
+  "baseUrl": "https://www.buscatusturnos.com.ar",
+  "video": {
+    "appName": "BuscaTusTurnos",
+    "ctaText": "¡Reservá tu turno en buscatusturnos.com.ar!"
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "steps": [
+    {
+      "action": "goto",
+      "url": "/",
+      "name": "Página Principal",
+      "narration": "Abrí la página principal de BuscaTusTurnos",
+      "waitUntil": "networkidle",
+      "delayAfter": 2000
+    },
+    {
+      "action": "screenshot",
+      "name": "Vista Inicial"
+    },
+    {
+      "action": "click",
+      "selector": "button[aria-label='Abrir menú']",
+      "name": "Abrir Menú",
+      "narration": "Tocá el menú para ver las opciones",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Click en Reservar"
+    },
+    {
+      "action": "click",
+      "selector": "[role='dialog'] a[href='/client']",
+      "name": "Buscar Profesionales",
+      "narration": "Seleccioná la opción Reservar",
+      "delayAfter": 1500
+    },
+    {
+      "action": "screenshot",
+      "name": "Lista de Profesionales"
+    },
+    {
+      "action": "scroll",
+      "y": 400,
+      "name": "Ver más profesionales",
+      "narration": "Deslizá para ver más opciones",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Más Profesionales"
+    },
+    {
+      "action": "scroll",
+      "y": 400,
+      "name": "Continuar explorando",
+      "narration": "Seguí explorando los profesionales disponibles",
+      "delayAfter": 800
+    },
+    {
+      "action": "screenshot",
+      "name": "Profesionales Disponibles"
+    }
+  ]
+}

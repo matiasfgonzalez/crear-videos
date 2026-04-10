@@ -16,10 +16,14 @@ import { waitMs } from './utils.js';
 import { log } from './logger.js';
 
 /** Execute a single flow step on the Playwright page */
-export async function executeAction(page: Page, step: FlowStep): Promise<void> {
+export async function executeAction(
+  page: Page,
+  step: FlowStep,
+  baseUrl?: string,
+): Promise<void> {
   switch (step.action) {
     case 'goto':
-      await handleGoto(page, step);
+      await handleGoto(page, step, baseUrl);
       break;
     case 'click':
       await handleClick(page, step);
@@ -64,9 +68,26 @@ export async function executeAction(page: Page, step: FlowStep): Promise<void> {
   }
 }
 
-async function handleGoto(page: Page, step: GotoStep): Promise<void> {
-  log.info(`  → goto: ${step.url}`);
-  await page.goto(step.url, {
+async function handleGoto(
+  page: Page,
+  step: GotoStep,
+  baseUrl?: string,
+): Promise<void> {
+  // Resolve relative URLs against baseUrl
+  let targetUrl = step.url;
+  if (
+    baseUrl &&
+    !step.url.startsWith('http://') &&
+    !step.url.startsWith('https://')
+  ) {
+    // Remove trailing slash from baseUrl and leading slash from path to avoid double slashes
+    const base = baseUrl.replace(/\/$/, '');
+    const path = step.url.startsWith('/') ? step.url : `/${step.url}`;
+    targetUrl = `${base}${path}`;
+  }
+
+  log.info(`  → goto: ${targetUrl}`);
+  await page.goto(targetUrl, {
     waitUntil: step.waitUntil ?? 'domcontentloaded',
     timeout: 30_000,
   });
@@ -115,7 +136,7 @@ async function handleWait(page: Page, step: WaitStep): Promise<void> {
 
 async function handleWaitForSelector(
   page: Page,
-  step: WaitForSelectorStep
+  step: WaitForSelectorStep,
 ): Promise<void> {
   log.info(`  → waitForSelector: ${step.selector}`);
   await page.locator(step.selector).waitFor({
@@ -138,7 +159,7 @@ async function handlePress(page: Page, step: PressStep): Promise<void> {
 
 async function handleSelectOption(
   page: Page,
-  step: SelectOptionStep
+  step: SelectOptionStep,
 ): Promise<void> {
   log.info(`  → selectOption: ${step.selector} = "${step.value}"`);
   await page.locator(step.selector).first().selectOption(step.value);
