@@ -87,7 +87,7 @@ export const StepScene: React.FC<StepSceneProps> = ({
           src={staticFile(imagePath)}
           style={{
             width: '100%',
-            height: '75%',
+            height: '85%',
             objectFit: 'cover',
             objectPosition: 'top center',
             transform: `scale(${zoomProgress})`,
@@ -103,7 +103,7 @@ export const StepScene: React.FC<StepSceneProps> = ({
           left: 0,
           right: 0,
           top: 0,
-          height: '75%',
+          height: '85%',
           background:
             'linear-gradient(to bottom, rgba(0,0,0,0.1) 60%, rgba(10,10,15,0.95) 100%)',
         }}
@@ -116,13 +116,13 @@ export const StepScene: React.FC<StepSceneProps> = ({
           bottom: 0,
           left: 0,
           right: 0,
-          height: '30%',
+          height: '18%',
           background: COLORS.surface,
           borderTop: `1px solid rgba(108,99,255,0.3)`,
           display: 'flex',
           flexDirection: 'column',
-          padding: '40px 60px',
-          gap: 24,
+          padding: '20px 40px',
+          gap: 12,
         }}
       >
         {/* Step counter */}
@@ -130,15 +130,15 @@ export const StepScene: React.FC<StepSceneProps> = ({
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 16,
+            gap: 12,
           }}
         >
           <div
             style={{
               background: `linear-gradient(135deg, ${COLORS.primary}, ${COLORS.secondary})`,
-              borderRadius: 12,
-              padding: '8px 20px',
-              fontSize: 26,
+              borderRadius: 10,
+              padding: '6px 14px',
+              fontSize: 20,
               fontWeight: 800,
               color: '#fff',
               letterSpacing: 1,
@@ -179,7 +179,7 @@ export const StepScene: React.FC<StepSceneProps> = ({
           <h2
             style={{
               margin: 0,
-              fontSize: 52,
+              fontSize: 36,
               fontWeight: 800,
               color: COLORS.textPrimary,
               lineHeight: 1.15,
